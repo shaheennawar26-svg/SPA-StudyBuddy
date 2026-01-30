@@ -1,0 +1,15 @@
+[
+  { "id": 1, "title": "MDN Web Docs", "category": "Documentation", "link": "https://developer.mozilla.org", "description": "المصدر الرسمي والشامل لتوثيق تقنيات الويب (HTML, CSS, JS)." },
+  { "id": 2, "title": "CSS Tricks", "category": "Design", "link": "https://css-tricks.com", "description": "مقالات متعمقة وحيل متقدمة لتصميم الويب باستخدام CSS." },
+  { "id": 3, "title": "JavaScript.info", "category": "Books", "link": "https://javascript.info", "description": "شرح حديث وشامل للغة جافاسكريبت من الأساسيات للاحتراف." },
+  { "id": 4, "title": "Frontend Mentor", "category": "Practice", "link": "https://frontendmentor.io", "description": "تحديات لبناء مشاريع حقيقية لتحسين مهارات الواجهة الأمامية." },
+  { "id": 5, "title": "FreeCodeCamp", "category": "Courses", "link": "https://www.freecodecamp.org", "description": "دورات مجانية مع شهادات في تطوير الويب والبرمجة." },
+  { "id": 6, "title": "W3Schools", "category": "Documentation", "link": "https://www.w3schools.com", "description": "دروس مبسطة وسريعة للمبتدئين في تقنيات الويب." },
+  { "id": 7, "title": "Codewars", "category": "Practice", "link": "https://www.codewars.com", "description": "تحديات برمجية صغيرة (Katas) لتحسين المنطق البرمجي." },
+  { "id": 8, "title": "Google Fonts", "category": "Design", "link": "https://fonts.google.com", "description": "مكتبة ضخمة من الخطوط المجانية لاستخدامها في المواقع." },
+  { "id": 9, "title": "Eloquent JavaScript", "category": "Books", "link": "https://eloquentjavascript.net", "description": "كتاب رائع وعميق لفهم لغة جافاسكريبت والبرمجة." },
+  { "id": 10, "title": "Stack Overflow", "category": "Community", "link": "https://stackoverflow.com", "description": "أكبر مجتمع للمبرمجين لطرح الأسئلة وحل المشاكل." },
+  { "id": 11, "title": "Dribbble", "category": "Design", "link": "https://dribbble.com", "description": "منصة لعرض التصاميم والإلهام البصري للمواقع." },
+  { "id": 12, "title": "GitHub", "category": "Tools", "link": "https://github.com", "description": "منصة لاستضافة الأكواد والعمل التعاوني وإدارة النسخ." }
+]
+

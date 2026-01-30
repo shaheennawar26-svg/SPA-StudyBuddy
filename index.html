@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy SPA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="StudyBuddy Logo" class="custom-logo">
+            <span>StudyBuddy</span>
+        </div>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#dashboard" class="active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a href="#tasks"><i class="fas fa-tasks"></i> المهام</a></li>
+                <li><a href="#habits"><i class="fas fa-calendar-check"></i> العادات</a></li>
+                <li><a href="#resources"><i class="fas fa-book"></i> المصادر</a></li>
+                <li><a href="#settings"><i class="fas fa-cog"></i> الإعدادات</a></li>
+            </ul>
+            <button id="theme-toggle" class="icon-btn" title="تغيير المظهر"><i class="fas fa-moon"></i></button>
+            <button id="mobile-menu-btn" class="icon-btn mobile-only"><i class="fas fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <main id="app-container">
+        
+        <section id="dashboard" class="active-section">
+            <h2>لوحة المعلومات</h2>
+            
+            <div class="summary-cards">
+                <div class="card">
+                    <h3>مهام قريبة</h3>
+                    <p id="dash-due-soon">0</p>
+                </div>
+                <div class="card">
+                    <h3>مهام مكتملة</h3>
+                    <p id="dash-completed">0</p>
+                </div>
+                <div class="card">
+                    <h3>الأهداف المحققة (أسبوعي)</h3>
+                    <p id="dash-habit-streak">0</p>
+                </div>
+            </div>
+
+            <div class="quick-add-section">
+                <h3><i class="fas fa-plus-circle"></i> إضافة سريعة للمهام</h3>
+                <form id="quick-add-form" class="form-group">
+                    <input type="text" id="quick-title" placeholder="عنوان المهمة" required style="flex: 2;">
+                    <input type="date" id="quick-date" placeholder="تاريخ الاستحقاق" required style="flex: 1;">
+                    <button type="submit" class="btn-primary">إضافة</button>
+                </form>
+            </div>
+            
+            <div class="today-focus">
+                <h3><i class="fas fa-star"></i> تركيز اليوم (والغد)</h3>
+                <div style="margin-bottom: 15px;">
+                    <div style="display:flex; justify-content:space-between; font-size: 0.9rem; color: var(--text-muted); margin-bottom:5px;">
+                        <span>نسبة الإنجاز الكلية:</span>
+                        <span id="progress-text">0%</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="dash-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <ul id="dash-today-list" class="list-container"></ul>
+            </div>
+        </section>
+
+        <section id="tasks" class="hidden">
+            <h2>إدارة المهام</h2>
+            
+            <form id="task-form" class="card" style="margin-bottom: 25px;">
+                <input type="hidden" id="task-id">
+                <div class="form-group">
+                    <input type="text" id="task-title" placeholder="عنوان المهمة (إجباري)" required>
+                    <input type="text" id="task-desc" placeholder="وصف المهمة (اختياري)">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="task-date" placeholder="حدد تاريخ المهمة" required>       
+                    <select id="task-priority">
+                        <option value="Low">منخفضة</option>
+                        <option value="Medium" selected>متوسطة</option>
+                        <option value="High">عالية</option>
+                    </select>
+                    <select id="task-category">
+                        <option value="Study">دراسة</option>
+                        <option value="Assignment">واجب</option>
+                        <option value="Personal">شخصي</option>
+                    </select>
+                </div>
+                <button type="submit" id="task-submit-btn" class="btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-plus"></i> إضافة المهمة</button>
+            </form>
+
+            <div class="controls" style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between; margin-bottom: 20px;">
+                <div class="filters">
+                    <button class="filter-btn active btn-secondary" data-filter="all" style="background: var(--primary-color);">الكل</button>
+                    <button class="filter-btn btn-secondary" data-filter="active">نشطة</button>
+                    <button class="filter-btn btn-secondary" data-filter="completed">مكتملة</button>
+                </div>
+                
+                <div style="display: flex; gap: 10px;">
+                    <select id="filter-category-select">
+                        <option value="all">كل التصنيفات</option>
+                        <option value="Study">دراسة</option>
+                        <option value="Assignment">واجب</option>
+                        <option value="Personal">شخصي</option>
+                    </select>
+                    <select id="sort-tasks">
+                        <option value="date">حسب التاريخ</option>
+                        <option value="priority">حسب الأولوية</option>
+                    </select>
+                </div>
+            </div>
+
+            <ul id="task-list" class="list-container"></ul>
+        </section>
+
+        <section id="habits" class="hidden">
+            <h2>تتبع العادات الأسبوعية</h2>
+            
+            <div id="habits-summary-card" class="card" style="margin-bottom: 20px; background: rgba(46, 204, 113, 0.1); border-color: var(--success-color);">
+                <h3 style="color: var(--success-color);"><i class="fas fa-trophy"></i> ملخص الأسبوع</h3>
+                <p id="habits-weekly-stat" style="color: var(--text-color); font-size: 1.2rem; font-weight: bold;">جاري الحساب...</p>
+            </div>
+
+            <form id="habit-form" class="form-group">
+                <input type="text" id="habit-name" placeholder="اسم العادة الجديدة" required style="flex: 2;">
+                <input type="number" id="habit-goal" placeholder="الهدف (أيام)" min="1" max="7" required style="flex: 1;">
+                <button type="submit" class="btn-primary">إضافة</button>
+            </form>
+            <div id="habits-list" class="habits-grid"></div>
+        </section>
+
+        <section id="resources" class="hidden">
+            <h2>المصادر التعليمية</h2>
+            
+            <div class="search-bar" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+                <input type="text" id="resource-search" placeholder="ابحث في المصادر..." style="flex: 2;">
+                
+                <select id="resource-category-filter" style="flex: 1;">
+                    <option value="all">كل التصنيفات</option>
+                    <option value="Documentation">توثيق (Documentation)</option>
+                    <option value="Design">تصميم (Design)</option>
+                    <option value="Books">كتب (Books)</option>
+                    <option value="Practice">تدريب (Practice)</option>
+                    <option value="Courses">دورات (Courses)</option>
+                    <option value="Tools">أدوات (Tools)</option>
+                    <option value="Community">مجتمع (Community)</option>
+                </select>
+
+                <button id="show-favorites-btn" class="btn-secondary"><i class="fas fa-star"></i> المفضلة فقط</button>
+            </div>
+
+            <div id="resources-container" class="resources-grid">
+                <p>جاري التحميل...</p>
+            </div>
+        </section>
+
+        <section id="settings" class="hidden">
+            <h2>الإعدادات</h2>
+            <div class="settings-card">
+                <h3>تخصيص التطبيق</h3>
+                <div class="setting-item">
+                    <span>الوضع الليلي</span>
+                    <label class="switch">
+                        <input type="checkbox" id="setting-theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>بيانات التطبيق</span>
+                    <button id="reset-data-btn" class="btn-danger">حذف جميع البيانات</button>
+                </div>
+            </div>
+            
+            <div class="about-section card">
+                <div class="about-header">
+                    <i class="fas fa-info-circle" style="font-size: 1.8rem; color: var(--primary-color);"></i>
+                    <h3>عن التطبيق</h3>
+                </div>
+                
+                <p class="about-text">
+                    <span class="highlight">StudyBuddy</span> رفيقك الذكي لتنظيم حياتك الدراسية، يساعدك على إدارة المهام، تتبع العادات، وحفظ المصادر التعليمية في مكان واحد.
+                </p>
+                
+                <div class="divider"></div>
+
+                <div class="about-details">
+                    <p><strong>إعداد الطالب:</strong> شاهين أنور أبو لحية</p>
+                    <p><strong>المساق:</strong> برمجة ويب 1</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 StudyBuddy - شاهين أنور أبو لحية</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
